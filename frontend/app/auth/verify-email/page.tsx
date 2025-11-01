@@ -1,6 +1,10 @@
 import Image from "next/image"
 import styles from "@/styles/pages/login.module.css"
 import { VerifyEmailForm } from "@/components/auth/verify-email-form"
+import { Suspense } from "react"
+
+// This page reads search params in a client component; avoid static prerender errors
+export const dynamic = "force-dynamic"
 
 export default function VerifyEmailPage() {
   return (
@@ -8,7 +12,9 @@ export default function VerifyEmailPage() {
       <div className="flex-1 flex">
         <div className="flex-1 flex items-center justify-center p-10 md:p-12 bg-background">
           <div className="w-full max-w-lg animate-fade-in-up">
-            <VerifyEmailForm />
+            <Suspense fallback={<div className="text-center text-muted-foreground">Cargando…</div>}>
+              <VerifyEmailForm />
+            </Suspense>
           </div>
         </div>
         <div className={`hidden lg:flex flex-1 bg-primary ${styles.hero}`}>
@@ -26,4 +32,3 @@ export default function VerifyEmailPage() {
     </div>
   )
 }
-

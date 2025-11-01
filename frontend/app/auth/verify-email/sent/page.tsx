@@ -6,6 +6,8 @@ import { useState } from "react"
 import { apiFetch } from "@/lib/api"
 import { toast } from "sonner"
 
+export const dynamic = "force-dynamic"
+
 export default function VerifyEmailSentPage() {
   const params = useSearchParams()
   const email = params.get('email') || ''
@@ -37,4 +39,3 @@ export default function VerifyEmailSentPage() {
     </main>
   )
 }
-
